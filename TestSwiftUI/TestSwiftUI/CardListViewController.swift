@@ -90,7 +90,9 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
         //tableView.tableHeaderView = headerTableView
         
         // top, left, bottom, right
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        //tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        tableView.separatorStyle = .None;
+        //tableView.estimatedSectionHeaderHeight = 33
         //tableView.sizeToFit();
         //add your tableView in your main view
         self.view.addSubview(tableView)
@@ -305,6 +307,7 @@ extension CardListViewController: UITableViewDataSource {
         */
         if indexPath.row == 0 && indexPath.section == 0{
             let cell : CustomCell = tableView.dequeueReusableCellWithIdentifier("CustomCell") as! CustomCell
+            cell.backgroundColor = UIColor.orangeColor();
             cell.textLabel?.text = "\(arraySource.objectAtIndex(indexPath.row))"
             cell.accessoryType = UITableViewCellAccessoryType.DetailButton
             cell.switchButton.addTarget(self, action: "switchButton:", forControlEvents: UIControlEvents.ValueChanged)
@@ -312,6 +315,7 @@ extension CardListViewController: UITableViewDataSource {
         }
         else{
             let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+            cell.backgroundColor = UIColor.orangeColor();
             cell.textLabel?.text = "\(arraySource.objectAtIndex(indexPath.row))"
             cell.accessoryType = UITableViewCellAccessoryType.DetailButton
             return cell

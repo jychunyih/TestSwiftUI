@@ -18,6 +18,9 @@ class CustomCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.contentView.backgroundColor = UIColor.orangeColor()
+        
         labelTotal = UILabel()
         labelTotal.textAlignment = NSTextAlignment.Right
         contentView.addSubview(labelTotal)
