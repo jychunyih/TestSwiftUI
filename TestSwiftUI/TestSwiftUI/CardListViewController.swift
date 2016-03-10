@@ -18,7 +18,7 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
     
     var tableView : UITableView!;
     var arraySource = NSMutableArray();
-    var etatSwitch  = false;
+    var etatSwitch  = true;
     var cardSortedKeys = [String]();
     var cardDataDict: Dictionary<String, [Card]>?;
 
@@ -27,6 +27,19 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        //self.navigationController!.navigationBar.barStyle = .Black
+        //self.navigationController!.navigationBar.translucent = true;
+        //self.navigationController!.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor();
+        self.navigationController?.navigationBar.tintColor = UIColor.grayColor();
+        
+        // hide the border
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        //navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+        //UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -67,7 +80,10 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
         tableView.dataSource = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.registerClass(CustomCell.self, forCellReuseIdentifier: "CustomCell")
+        tableView.registerClass(TextCardCell.self, forCellReuseIdentifier: "TextCardCell")
+        tableView.registerClass(ImageCardCell.self, forCellReuseIdentifier: "ImageCardCell")
         
+        /*
         //Create a footer and a header for your tableView
         let footerTableView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 44))
         footerTableView.backgroundColor = UIColor.blueColor()
@@ -84,7 +100,7 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
         textFieldHeader.text = "Header view"
         textFieldHeader.textAlignment = .Center
         headerTableView.addSubview(textFieldHeader)
-        
+        */
         //Add your header and your footer to your tableView
         //tableView.tableFooterView = footerTableView
         //tableView.tableHeaderView = headerTableView
@@ -122,6 +138,9 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
     }
     
     func CreateNavPanel() {
+        
+        
+        
         //create a new button
         let button: UIButton = UIButton(type: UIButtonType.Custom)
         //set image for button
@@ -222,12 +241,20 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
         // 1
         let nav = self.navigationController?.navigationBar
         // 2
-        nav?.barStyle = UIBarStyle.Black
-        nav?.tintColor = UIColor.yellowColor()
+        //nav?.barStyle = UIBarStyle.Default
+        //nav?.barStyle = .Black
+        //nav?.translucent = false;
+        //nav?.barTintColor = UIColor.whiteColor()
+        //nav?.tintColor = UIColor.whiteColor()
         // 3
+        
+        
+        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         //imageView.contentMode = .ScaleAspectFit
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .ScaleAspectFit
+        let titleUIView = UIView(frame: CGRect(x: 0, y: 0, width: 160, height: 40))
+        titleUIView.addSubview(imageView);
         
         //imageView.frame.offsetInPlace(dx: 80, dy: 0);
         
@@ -235,9 +262,15 @@ class CardListViewController: UIViewController, UIActionSheetDelegate {
         let image = UIImage(named: "digicard_title")
         imageView.image = image
         // 5
-        navigationItem.titleView = imageView
+        navigationItem.titleView = titleUIView
+        navigationItem.titleView?.contentMode = .ScaleAspectFill
+        navigationItem.titleView?.layer.masksToBounds = true;
+        navigationItem.titleView?.frame = CGRect(x: 0, y: 0, width: 180, height: 40);
+        //navigationItem.titleView?.sizeToFit();
+        //navigationItem.titleView?.sizeToFit()
         
-        nav?.layer.cornerRadius = 25
+        
+        //nav?.layer.cornerRadius = 25
     }
 }
 
@@ -247,6 +280,37 @@ extension CardListViewController: UITableViewDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let more = UITableViewRowAction(style: .Normal, title: "More") { action, index in
+            print("more button tapped")
+        }
+        let image = UIImage(named: "digicard_title")
+       // image? = CGRect(x: 0, y: 0, width: 40, height: 110);
+        more.backgroundColor = UIColor(patternImage: image!)
+        //more.backgroundEffect = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)) as! UIVisualEffect;
+        more.backgroundEffect = UIBlurEffect(style: .Dark);
+        
+        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            print("favorite button tapped")
+        }
+        favorite.backgroundColor = UIColor.orangeColor()
+        
+        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
+            print("share button tapped")
+        }
+        share.backgroundColor = UIColor.blueColor()
+        
+        return [share, favorite, more]
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // do nothing
     }
 }
 
@@ -289,7 +353,7 @@ extension CardListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 84;
+        return 110;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -305,20 +369,54 @@ extension CardListViewController: UITableViewDataSource {
         
         return cell;
         */
-        if indexPath.row == 0 && indexPath.section == 0{
+        if indexPath.section == 0{
+            /*
             let cell : CustomCell = tableView.dequeueReusableCellWithIdentifier("CustomCell") as! CustomCell
-            cell.backgroundColor = UIColor.orangeColor();
+            //cell.backgroundColor = UIColor.orangeColor();
             cell.textLabel?.text = "\(arraySource.objectAtIndex(indexPath.row))"
             cell.accessoryType = UITableViewCellAccessoryType.DetailButton
             cell.switchButton.addTarget(self, action: "switchButton:", forControlEvents: UIControlEvents.ValueChanged)
             return cell
+            */
+            if (indexPath.row == 0) {
+                let cell: TextCardCell = tableView.dequeueReusableCellWithIdentifier("TextCardCell") as! TextCardCell;
+                return cell;
+            }
+            else if (indexPath.row == 2) {
+                let cell: TextCardCell = tableView.dequeueReusableCellWithIdentifier("TextCardCell") as! TextCardCell;
+                cell.captionLabel.text = "和赵晨晨的聊天"
+                
+                let origX = cell.frame.origin.x;
+                let origY = cell.frame.origin.y;
+                let origWidth = cell.frame.size.width;
+                let origHeight = cell.frame.size.height;
+                
+                //contentView.frame = CGRect(x: 10, y: 0, width: contentViewWidth - 20, height: contentViewHeight - 10)
+                cell.frame = CGRect(x: origX + 10, y: origY, width: origWidth - 20, height: origHeight - 10)
+                
+                return cell;
+            }
+            else if (indexPath.row == 1) {
+                let cell: ImageCardCell = tableView.dequeueReusableCellWithIdentifier("ImageCardCell") as! ImageCardCell;
+                cell.captionLabel.text = "年会活动照片"
+                return cell;
+            }
+            else {
+                let cell: ImageCardCell = tableView.dequeueReusableCellWithIdentifier("ImageCardCell") as! ImageCardCell;
+                cell.captionLabel.text = "孩子的成长日记"
+                return cell;
+            }
         }
         else{
+            /*
             let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell")!
-            cell.backgroundColor = UIColor.orangeColor();
+            //cell.backgroundColor = UIColor.orangeColor();
             cell.textLabel?.text = "\(arraySource.objectAtIndex(indexPath.row))"
             cell.accessoryType = UITableViewCellAccessoryType.DetailButton
             return cell
+            */
+            let cell: TextCardCell = tableView.dequeueReusableCellWithIdentifier("TextCardCell") as! TextCardCell;
+            return cell;
         }
     }
     
@@ -327,7 +425,13 @@ extension CardListViewController: UITableViewDataSource {
         let title = self.cardSortedKeys[section];
         return title;
         */
-        return "section \(section)"
+        if (section == 0) {
+            return "今天"
+        }
+        else {
+            return "最近7天"
+        }
+        //return "section \(section)"
     }
     
     func switchButton(sender:UISwitch){
