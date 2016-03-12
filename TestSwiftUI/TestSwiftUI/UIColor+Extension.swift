@@ -6,7 +6,7 @@
 //  Copyright © 2016年 chunyih. All rights reserved.
 //
 
-typealias TSColor = UIColor.LocalColorName
+typealias DCColor = UIColor.LocalColorName
 
 import Foundation
 import UIColor_Hex_Swift

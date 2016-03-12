@@ -50,6 +50,21 @@
 		64143BDE1C913FF100796976 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143BDD1C913FF100796976 /* UIColor+Extension.swift */; };
 		64143BDF1C913FF100796976 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143BDD1C913FF100796976 /* UIColor+Extension.swift */; };
 		64143BE01C913FF100796976 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143BDD1C913FF100796976 /* UIColor+Extension.swift */; };
+		64143C361C93FBE400796976 /* ActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C351C93FBE400796976 /* ActionBarView.swift */; };
+		64143C371C93FBE400796976 /* ActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C351C93FBE400796976 /* ActionBarView.swift */; };
+		64143C381C93FBE400796976 /* ActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C351C93FBE400796976 /* ActionBarView.swift */; };
+		64143C3A1C93FC2700796976 /* DigiCardGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C391C93FC2700796976 /* DigiCardGlobals.swift */; };
+		64143C3B1C93FC2700796976 /* DigiCardGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C391C93FC2700796976 /* DigiCardGlobals.swift */; };
+		64143C3C1C93FC2700796976 /* DigiCardGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C391C93FC2700796976 /* DigiCardGlobals.swift */; };
+		64143C3E1C93FC8F00796976 /* TextCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */; };
+		64143C3F1C93FC8F00796976 /* TextCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */; };
+		64143C401C93FC8F00796976 /* TextCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */; };
+		64143C421C93FCD300796976 /* ImageCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C411C93FCD300796976 /* ImageCardTableCell.swift */; };
+		64143C431C93FCD300796976 /* ImageCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C411C93FCD300796976 /* ImageCardTableCell.swift */; };
+		64143C441C93FCD300796976 /* ImageCardTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C411C93FCD300796976 /* ImageCardTableCell.swift */; };
+		64143C461C93FDE200796976 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C451C93FDE200796976 /* CameraView.swift */; };
+		64143C471C93FDE200796976 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C451C93FDE200796976 /* CameraView.swift */; };
+		64143C481C93FDE200796976 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C451C93FDE200796976 /* CameraView.swift */; };
 		DF4830C913DF1926F0E945A6 /* Pods_TestSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDE637FFC7DD5B3E18D493E /* Pods_TestSwiftUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +113,11 @@
 		64143BD51C91204F00796976 /* TextCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCardCell.swift; sourceTree = "<group>"; };
 		64143BD91C9134E200796976 /* ImageCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardCell.swift; sourceTree = "<group>"; };
 		64143BDD1C913FF100796976 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		64143C351C93FBE400796976 /* ActionBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarView.swift; sourceTree = "<group>"; };
+		64143C391C93FC2700796976 /* DigiCardGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigiCardGlobals.swift; sourceTree = "<group>"; };
+		64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCardTableCell.swift; sourceTree = "<group>"; };
+		64143C411C93FCD300796976 /* ImageCardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardTableCell.swift; sourceTree = "<group>"; };
+		64143C451C93FDE200796976 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		C308056A97C49B60D4DFA6A6 /* Pods-TestSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestSwiftUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestSwiftUI/Pods-TestSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +190,11 @@
 				64143BD51C91204F00796976 /* TextCardCell.swift */,
 				64143BD91C9134E200796976 /* ImageCardCell.swift */,
 				64143BDD1C913FF100796976 /* UIColor+Extension.swift */,
+				64143C351C93FBE400796976 /* ActionBarView.swift */,
+				64143C391C93FC2700796976 /* DigiCardGlobals.swift */,
+				64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */,
+				64143C411C93FCD300796976 /* ImageCardTableCell.swift */,
+				64143C451C93FDE200796976 /* CameraView.swift */,
 			);
 			path = TestSwiftUI;
 			sourceTree = "<group>";
@@ -402,13 +427,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64143C3A1C93FC2700796976 /* DigiCardGlobals.swift in Sources */,
 				64143BBA1C9019DA00796976 /* NSObject+String.swift in Sources */,
 				64143B7D1C8FC09A00796976 /* ViewController.swift in Sources */,
+				64143C461C93FDE200796976 /* CameraView.swift in Sources */,
 				64143BCE1C902CB500796976 /* CustomCell.swift in Sources */,
+				64143C421C93FCD300796976 /* ImageCardTableCell.swift in Sources */,
 				64143BDA1C9134E200796976 /* ImageCardCell.swift in Sources */,
 				64143BD61C91204F00796976 /* TextCardCell.swift in Sources */,
 				64143BBE1C901D8600796976 /* UIView+Extension.swift in Sources */,
+				64143C361C93FBE400796976 /* ActionBarView.swift in Sources */,
 				64143BC71C9020DE00796976 /* TestCardTableViewCell.swift in Sources */,
+				64143C3E1C93FC8F00796976 /* TextCardTableCell.swift in Sources */,
 				64143BB61C90195100796976 /* CardTableViewCell.swift in Sources */,
 				64143BAA1C8FCCA500796976 /* Card.swift in Sources */,
 				64143B7B1C8FC09A00796976 /* AppDelegate.swift in Sources */,
@@ -429,11 +459,16 @@
 				64143BC81C9020DE00796976 /* TestCardTableViewCell.swift in Sources */,
 				64143BD71C91204F00796976 /* TextCardCell.swift in Sources */,
 				64143BCF1C902CB500796976 /* CustomCell.swift in Sources */,
+				64143C3B1C93FC2700796976 /* DigiCardGlobals.swift in Sources */,
+				64143C431C93FCD300796976 /* ImageCardTableCell.swift in Sources */,
 				64143BBB1C9019DA00796976 /* NSObject+String.swift in Sources */,
 				64143B901C8FC09B00796976 /* TestSwiftUITests.swift in Sources */,
 				64143BAB1C8FCCA500796976 /* Card.swift in Sources */,
+				64143C471C93FDE200796976 /* CameraView.swift in Sources */,
 				64143BDB1C9134E200796976 /* ImageCardCell.swift in Sources */,
+				64143C3F1C93FC8F00796976 /* TextCardTableCell.swift in Sources */,
 				64143BAF1C8FE85500796976 /* MenuUIBarButtonItem.swift in Sources */,
+				64143C371C93FBE400796976 /* ActionBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,11 +483,16 @@
 				64143BC91C9020DE00796976 /* TestCardTableViewCell.swift in Sources */,
 				64143BD81C91204F00796976 /* TextCardCell.swift in Sources */,
 				64143BD01C902CB500796976 /* CustomCell.swift in Sources */,
+				64143C3C1C93FC2700796976 /* DigiCardGlobals.swift in Sources */,
+				64143C441C93FCD300796976 /* ImageCardTableCell.swift in Sources */,
 				64143BBC1C9019DA00796976 /* NSObject+String.swift in Sources */,
 				64143B9B1C8FC09B00796976 /* TestSwiftUIUITests.swift in Sources */,
 				64143BAC1C8FCCA500796976 /* Card.swift in Sources */,
+				64143C481C93FDE200796976 /* CameraView.swift in Sources */,
 				64143BDC1C9134E200796976 /* ImageCardCell.swift in Sources */,
+				64143C401C93FC8F00796976 /* TextCardTableCell.swift in Sources */,
 				64143BB01C8FE85500796976 /* MenuUIBarButtonItem.swift in Sources */,
+				64143C381C93FBE400796976 /* ActionBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
