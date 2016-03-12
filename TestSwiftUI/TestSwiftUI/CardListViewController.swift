@@ -14,6 +14,9 @@ class CardListViewController: UIViewController {
     // MARK : Properties
     var actionBarView: ActionBarView!
     var tableView : UITableView!
+    var refreshControl: UIRefreshControl!
+    
+    // size info
     var navBarHeight: CGFloat = 0
     var statusBarHeight: CGFloat = 20
     var menuShowOffset: CGFloat = 50
@@ -39,7 +42,6 @@ class CardListViewController: UIViewController {
         super.viewDidLoad()
         setupNavPanel()
         setupTableView()
-        
         setupActionBarView()
         view.addSubview(actionBarView)
         //view.bringSubviewToFront(actionBarView)
@@ -60,8 +62,35 @@ class CardListViewController: UIViewController {
         tableView.registerClass(TextCardTableCell.self, forCellReuseIdentifier: "TextCardTableCell")
         tableView.registerClass(ImageCardTableCell.self, forCellReuseIdentifier: "ImageCardTableCell")
         
+        // add refresh control
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+        self.refreshControl.addTarget(self, action: "TableRefreshData:", forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        
         // add subview
         self.view.addSubview(tableView)
+    }
+    
+    func TableRefreshData(sender: AnyObject) {
+        
+        self.refreshControl?.beginRefreshing()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "加载中...")
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            NSLog("Do Table Refresh Data")
+            sleep(5)
+            self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+            self.refreshControl?.endRefreshing()
+            /*
+            dispatch_async(dispatch_get_main_queue(), {
+                
+            });
+            */
+        })
+        
+        //self.tableView.reloadData()
+        
     }
     
     func setupNavPanel() {
@@ -174,6 +203,19 @@ extension CardListViewController{
 
 // MARK: Table View Delegation extension
 extension CardListViewController: UITableViewDelegate {
+    
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        if (self.refreshControl.refreshing == false) {
+            //self.refreshControl.attributedTitle = NSAttributedString(string: "加载中...")
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if (self.refreshControl.refreshing == false) {
+            //self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+        }
+    }
+    
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let alert = UIAlertController(title: "row selected : \(indexPath.row) in section \(indexPath.section) ", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
