@@ -68,7 +68,7 @@ class TextCardCell: UITableViewCell {
         
         super.layoutSubviews()
         //self.contentView.backgroundColor = UIColor(red: 0x00, green: 0x89, blue: 0xB5, alpha: 1);
-        self.contentView.backgroundColor = UIColor(colorNamed: UIColor.LocalColorName.cardBackgroundColor)
+        self.contentView.backgroundColor = UIColor.blueColor()
         self.contentView.alpha = 0.9
         captionLabel.text = "待办记事"
         contentLabel.text = "通知相关企业，27日10时联系赵晨晨，56878542"

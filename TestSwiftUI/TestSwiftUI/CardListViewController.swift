@@ -28,6 +28,14 @@ class CardListViewController: UIViewController {
     var barButtonWidth: CGFloat = 40
     var barItemWidth: CGFloat = 44
     
+    // drag variable
+    struct My {
+        static var cellSnapshot : UIView? = nil
+    }
+    struct Path {
+        static var initialIndexPath : NSIndexPath? = nil
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         actionBarView = ActionBarView()
@@ -55,6 +63,10 @@ class CardListViewController: UIViewController {
         tableView.backgroundColor = UIColor.whiteColor();
         tableView.separatorStyle = .None;
         
+        // long press gesture
+        let longPress = UILongPressGestureRecognizer(target: self, action: "tableViewLongPress:")
+        tableView.addGestureRecognizer(longPress)
+
         // set delegation and cell object model
         tableView.delegate = self
         tableView.dataSource = self
@@ -70,6 +82,116 @@ class CardListViewController: UIViewController {
         
         // add subview
         self.view.addSubview(tableView)
+    }
+    
+    func snapshotOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        
+        inputView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+        
+        UIGraphicsEndImageContext()
+        
+        let cellSnapshot : UIView = UIImageView(image: image)
+        
+        cellSnapshot.layer.masksToBounds = false
+        
+        cellSnapshot.layer.cornerRadius = 0.0
+        
+        cellSnapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0)
+        
+        cellSnapshot.layer.shadowRadius = 5.0
+        
+        cellSnapshot.layer.shadowOpacity = 0.4
+        
+        return cellSnapshot
+        
+    }
+    
+    func tableViewLongPress(gestureRecognizer: UIGestureRecognizer) {
+        NSLog("tableViewLongPress triggerer")
+        let longPress = gestureRecognizer as! UILongPressGestureRecognizer
+        let state = longPress.state
+        NSLog("tableViewLongPress state = " + String(state))
+        
+        let locationInView: CGPoint = longPress.locationInView(self.tableView)
+        let indexPath: NSIndexPath = self.tableView.indexPathForRowAtPoint(locationInView)!
+        NSLog("tableViewLongPress indexPath = " + String(indexPath))
+        
+        switch state {
+            case UIGestureRecognizerState.Began:
+            
+            Path.initialIndexPath = indexPath
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
+            My.cellSnapshot  = snapshotOfCell(cell)
+            var center = cell.center
+            My.cellSnapshot!.center = center
+            My.cellSnapshot!.alpha = 0.0
+            
+            tableView.addSubview(My.cellSnapshot!)
+            
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                
+                center.y = locationInView.y
+                My.cellSnapshot!.center = center
+                My.cellSnapshot!.transform = CGAffineTransformMakeScale(1.05, 1.05)
+                My.cellSnapshot!.alpha = 0.98
+                
+                cell.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    
+                    if finished {
+                        
+                        cell.hidden = true
+                        
+                    }
+                    
+            })
+        case UIGestureRecognizerState.Changed:
+            var center = My.cellSnapshot!.center
+            
+            center.y = locationInView.y
+            
+            My.cellSnapshot!.center = center
+            
+            if (indexPath != Path.initialIndexPath) {
+                
+                tableView.moveRowAtIndexPath(Path.initialIndexPath!, toIndexPath: indexPath)
+                
+                Path.initialIndexPath = indexPath
+                
+            }
+        default:
+            let cell = tableView.cellForRowAtIndexPath(Path.initialIndexPath!) as UITableViewCell!
+            
+            cell.hidden = false
+            
+            cell.alpha = 0.0
+            
+            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                
+                My.cellSnapshot!.center = cell.center
+                
+                My.cellSnapshot!.transform = CGAffineTransformIdentity
+                
+                My.cellSnapshot!.alpha = 0.0
+                
+                cell.alpha = 1.0
+                
+                }, completion: { (finished) -> Void in
+                    
+                    if finished {
+                        
+                        Path.initialIndexPath = nil
+                        
+                        My.cellSnapshot!.removeFromSuperview()
+                        
+                        My.cellSnapshot = nil
+                        
+                    }
+            })
+        }
     }
     
     func TableRefreshData(sender: AnyObject) {

@@ -9,7 +9,6 @@
 typealias DCColor = UIColor.LocalColorName
 
 import Foundation
-import UIColor_Hex_Swift
 import UIKit
 
 extension UIColor {
@@ -18,9 +17,5 @@ extension UIColor {
         case tabbarSelectedTextColor = "#68BB1E"
         case viewBackgroundColor = "#E7EBEE"
         case cardBackgroundColor = "#00B589"
-    }
-    
-    convenience init!(colorNamed name: LocalColorName) {
-        self.init(rgba: name.rawValue)
     }
 }

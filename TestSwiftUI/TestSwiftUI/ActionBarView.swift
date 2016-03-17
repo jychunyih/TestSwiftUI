@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import UIColor_Hex_Swift
 
 
 @IBDesignable class ActionBarView: UIView {
