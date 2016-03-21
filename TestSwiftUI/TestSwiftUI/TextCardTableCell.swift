@@ -76,9 +76,12 @@ class TextCardTableCell: UITableViewCell {
         let origX = self.frame.origin.x;
         let origY = self.frame.origin.y;
         
+        
         if (initSwitch == false) {
             initBoundWidth = self.bounds.size.width;
             initBoundHeight = self.bounds.size.height;
+            
+            NSLog("initSwitch: \(initBoundWidth), initBoundHeight: \(initBoundHeight)")
             
             self.contentMode = .ScaleAspectFill
             self.layer.masksToBounds = true;
@@ -93,6 +96,23 @@ class TextCardTableCell: UITableViewCell {
         }
         
         contentView.frame = CGRectMake(cellLeftMargin, 0, initBoundWidth - (cellLeftMargin + cellRightMargin), initBoundHeight - cellBottomMargin)
+        
+        
+        //self.separatorInset = UIEdgeInsets(top: 0, left: 100, bottom: 0, right: -100)
+        
+        /*
+        NSLog("origX: \(origX), origY: \(origY), self left: \(self.frame.origin.x), self width: \(self.frame.size.width)")
+        
+        let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
+        if (self.frame.width >= UIScreen.mainScreen().bounds.width) {
+            self.contentMode = .ScaleAspectFill
+            self.layer.masksToBounds = true;
+            self.backgroundColor = UIColor.redColor()
+            self.frame = CGRectMake(origX + cellLeftMargin, origY, screenWidth - 2*cellLeftMargin, 110 - cellBottomMargin);
+        }
+        
+        contentView.frame = CGRectMake(10, 0, screenWidth - 2*cellLeftMargin, 110 - cellBottomMargin)
+        */
     }
 }
 

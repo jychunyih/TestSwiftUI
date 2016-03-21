@@ -102,7 +102,7 @@ class CardListViewController: UIViewController {
         
         cellSnapshot.layer.cornerRadius = 0.0
         
-        cellSnapshot.layer.shadowOffset = CGSizeMake(-0.0, 0.0)
+        cellSnapshot.layer.shadowOffset = CGSizeMake(-10.0, 0.0)
         
         cellSnapshot.layer.shadowRadius = 5.0
         
@@ -131,10 +131,20 @@ class CardListViewController: UIViewController {
             
             Path.initialIndexPath = indexPath
             let cell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
+            
+            /*
+            var tmpFrame = cell.contentView.frame
+            tmpFrame.origin.x -= 10
+            //tmpFrame.size.width += 10
+            cell.contentView.frame = tmpFrame
+            */
+
             My.cellSnapshot  = snapshotOfCell(cell)
             var center = cell.center
             My.cellSnapshot!.center = center
             My.cellSnapshot!.alpha = 0.0
+            
+            
             
             tableView.addSubview(My.cellSnapshot!)
             
@@ -142,6 +152,14 @@ class CardListViewController: UIViewController {
                 
                 center.y = locationInView.y
                 My.cellSnapshot!.center = center
+                
+                // set frame
+                /*
+                var tmpBounds = My.cellSnapshot?.bounds
+                tmpBounds?.origin.x += 100
+                My.cellSnapshot?.bounds = tmpBounds!
+                */
+                
                 My.cellSnapshot!.transform = CGAffineTransformMakeScale(0.95, 0.95)
                 My.cellSnapshot!.alpha = 0.98
                 

@@ -91,6 +91,8 @@ class TextCardCell: UITableViewCell {
             testBoundWidth = self.bounds.size.width;
             testBoundHeight = self.bounds.size.height;
             
+            
+            
             self.contentMode = .ScaleAspectFill
             self.layer.masksToBounds = true;
             //self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, testBoundWidth - 10, testBoundHeight - 10);
