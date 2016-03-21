@@ -86,6 +86,11 @@ class TextCardTableCell: UITableViewCell {
             
             initSwitch = true;
         }
+        else if (self.frame.width >= UIScreen.mainScreen().bounds.width) {
+            self.contentMode = .ScaleAspectFill
+            self.layer.masksToBounds = true;
+            self.frame = CGRectMake(origX, origY, initBoundWidth - cellRightMargin, initBoundHeight - cellBottomMargin);
+        }
         
         contentView.frame = CGRectMake(cellLeftMargin, 0, initBoundWidth - (cellLeftMargin + cellRightMargin), initBoundHeight - cellBottomMargin)
     }

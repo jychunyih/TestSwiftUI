@@ -34,6 +34,7 @@ class CardListViewController: UIViewController {
     }
     struct Path {
         static var initialIndexPath : NSIndexPath? = nil
+        static var previousIndexPath: NSIndexPath? = nil
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +59,8 @@ class CardListViewController: UIViewController {
     func setupTableView() {
         // create the table view object
         tableView = UITableView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - navBarHeight - statusBarHeight), style: UITableViewStyle.Grouped)
+        
+        //tableView.contentInset = UIEdgeInsetsMake(0, 50, 0, 50)
         
         // set table view properties
         tableView.backgroundColor = UIColor.whiteColor();
@@ -99,7 +102,7 @@ class CardListViewController: UIViewController {
         
         cellSnapshot.layer.cornerRadius = 0.0
         
-        cellSnapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0)
+        cellSnapshot.layer.shadowOffset = CGSizeMake(-0.0, 0.0)
         
         cellSnapshot.layer.shadowRadius = 5.0
         
@@ -116,14 +119,18 @@ class CardListViewController: UIViewController {
         NSLog("tableViewLongPress state = " + String(state))
         
         let locationInView: CGPoint = longPress.locationInView(self.tableView)
-        let indexPath: NSIndexPath = self.tableView.indexPathForRowAtPoint(locationInView)!
+        let indexPath: NSIndexPath? = self.tableView.indexPathForRowAtPoint(locationInView)
         NSLog("tableViewLongPress indexPath = " + String(indexPath))
+        
+        if (indexPath == nil) {
+            return
+        }
         
         switch state {
             case UIGestureRecognizerState.Began:
             
             Path.initialIndexPath = indexPath
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
+            let cell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
             My.cellSnapshot  = snapshotOfCell(cell)
             var center = cell.center
             My.cellSnapshot!.center = center
@@ -135,7 +142,7 @@ class CardListViewController: UIViewController {
                 
                 center.y = locationInView.y
                 My.cellSnapshot!.center = center
-                My.cellSnapshot!.transform = CGAffineTransformMakeScale(1.05, 1.05)
+                My.cellSnapshot!.transform = CGAffineTransformMakeScale(0.95, 0.95)
                 My.cellSnapshot!.alpha = 0.98
                 
                 cell.alpha = 0.0
@@ -156,14 +163,31 @@ class CardListViewController: UIViewController {
             My.cellSnapshot!.center = center
             
             if (indexPath != Path.initialIndexPath) {
+
+                if Path.previousIndexPath != nil {
+                    let previousCell = tableView.cellForRowAtIndexPath(Path.previousIndexPath!) as UITableViewCell!
+                    //previousCell.contentView.layer.borderColor = UIColor.redColor().CGColor
+                    previousCell.contentView.layer.borderWidth = 0.0
+                }
+                Path.previousIndexPath = indexPath
+                //tableView.moveRowAtIndexPath(Path.initialIndexPath!, toIndexPath: indexPath)
                 
-                tableView.moveRowAtIndexPath(Path.initialIndexPath!, toIndexPath: indexPath)
-                
-                Path.initialIndexPath = indexPath
+                //Path.initialIndexPath = indexPath
+                let cell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
+                //cell.backgroundColor = UIColor.redColor()
+                cell.contentView.layer.borderColor = UIColor.redColor().CGColor
+                cell.contentView.layer.borderWidth = 2.0
                 
             }
         default:
             let cell = tableView.cellForRowAtIndexPath(Path.initialIndexPath!) as UITableViewCell!
+            NSLog("default indexPath = " + String(indexPath))
+            
+            if Path.previousIndexPath != nil {
+                let previousCell = tableView.cellForRowAtIndexPath(Path.previousIndexPath!) as UITableViewCell!
+                //previousCell.contentView.layer.borderColor = UIColor.redColor().CGColor
+                previousCell.contentView.layer.borderWidth = 0.0
+            }
             
             cell.hidden = false
             
