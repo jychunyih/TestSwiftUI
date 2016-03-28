@@ -40,11 +40,17 @@ class CardListViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         actionBarView = ActionBarView()
+        
+        //let actionSheet: UIActionSheet = UIActionSheet(title: "testtitle", delegate: self, cancelButtonTitle: "cancel", destructiveButtonTitle: "destroy", otherButtonTitles: "button 1", "button 2")
+        //actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         actionBarView = ActionBarView()
+        
+        //let actionSheet: UIActionSheet = UIActionSheet(title: "testtitle", delegate: self, cancelButtonTitle: "cancel", destructiveButtonTitle: "destroy", otherButtonTitles: "button 1", "button 2")
+        //actionSheet.actionSheetStyle = UIActionSheetStyle.Default;
     }
     
     override func viewDidLoad() {
@@ -76,6 +82,7 @@ class CardListViewController: UIViewController {
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.registerClass(TextCardTableCell.self, forCellReuseIdentifier: "TextCardTableCell")
         tableView.registerClass(ImageCardTableCell.self, forCellReuseIdentifier: "ImageCardTableCell")
+        tableView.registerClass(TestMarginTableCell.self, forCellReuseIdentifier: "TestMarginTableCell")
         
         // add refresh control
         self.refreshControl = UIRefreshControl()
@@ -102,11 +109,13 @@ class CardListViewController: UIViewController {
         
         cellSnapshot.layer.cornerRadius = 0.0
         
-        cellSnapshot.layer.shadowOffset = CGSizeMake(-10.0, 0.0)
+        //cellSnapshot.layer.shadowOffset = CGSizeMake(-10.0, 0.0)
         
-        cellSnapshot.layer.shadowRadius = 5.0
+        //cellSnapshot.layer.shadowRadius = 5.0
         
-        cellSnapshot.layer.shadowOpacity = 0.4
+        //cellSnapshot.layer.shadowOpacity = 0.4
+        
+        cellSnapshot.alpha = 0.0
         
         return cellSnapshot
         
@@ -399,6 +408,17 @@ extension CardListViewController: UITableViewDelegate {
         let deleteAction = UITableViewRowAction(style: .Normal, title: "      ") { action, index in
             NSLog("deleteAction tapped")
             // TODO
+            
+            let delConfirmActionSheet: UIAlertController = UIAlertController(title: "Are you Sure?", message: "Click to Delete", preferredStyle: .ActionSheet)
+            
+            let delActionOk: UIAlertAction = UIAlertAction(title: "Yes, Delete", style: .Default, handler: {action in
+                NSLog("Yes, Delete is clicked")
+            })
+            let delActionCancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            delConfirmActionSheet.addAction(delActionOk)
+            delConfirmActionSheet.addAction(delActionCancel)
+            
+            self.presentViewController(delConfirmActionSheet, animated: true, completion: nil)
         }
         let imageDelete = UIImage(named: "delete_")
         deleteAction.backgroundColor = UIColor(patternImage: imageDelete!)
@@ -445,7 +465,9 @@ extension CardListViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             if (indexPath.row == 0) {
-                let cell: TextCardTableCell = tableView.dequeueReusableCellWithIdentifier("TextCardTableCell") as! TextCardTableCell;
+                
+                //let cell: TextCardTableCell = tableView.dequeueReusableCellWithIdentifier("TextCardTableCell") as! TextCardTableCell;
+                let cell: TestMarginTableCell = tableView.dequeueReusableCellWithIdentifier("TestMarginTableCell") as! TestMarginTableCell;
                 return cell;
             }
             else if (indexPath.row == 2) {

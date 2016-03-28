@@ -65,6 +65,9 @@
 		64143C461C93FDE200796976 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C451C93FDE200796976 /* CameraView.swift */; };
 		64143C471C93FDE200796976 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C451C93FDE200796976 /* CameraView.swift */; };
 		64143C481C93FDE200796976 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64143C451C93FDE200796976 /* CameraView.swift */; };
+		69EE8D5D1CA4466000148FCB /* TestMarginTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EE8D5C1CA4466000148FCB /* TestMarginTableCell.swift */; };
+		69EE8D5E1CA4466000148FCB /* TestMarginTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EE8D5C1CA4466000148FCB /* TestMarginTableCell.swift */; };
+		69EE8D5F1CA4466000148FCB /* TestMarginTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EE8D5C1CA4466000148FCB /* TestMarginTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +120,7 @@
 		64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCardTableCell.swift; sourceTree = "<group>"; };
 		64143C411C93FCD300796976 /* ImageCardTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardTableCell.swift; sourceTree = "<group>"; };
 		64143C451C93FDE200796976 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		69EE8D5C1CA4466000148FCB /* TestMarginTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMarginTableCell.swift; sourceTree = "<group>"; };
 		C308056A97C49B60D4DFA6A6 /* Pods-TestSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestSwiftUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestSwiftUI/Pods-TestSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +197,7 @@
 				64143C3D1C93FC8F00796976 /* TextCardTableCell.swift */,
 				64143C411C93FCD300796976 /* ImageCardTableCell.swift */,
 				64143C451C93FDE200796976 /* CameraView.swift */,
+				69EE8D5C1CA4466000148FCB /* TestMarginTableCell.swift */,
 			);
 			path = TestSwiftUI;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69EE8D5D1CA4466000148FCB /* TestMarginTableCell.swift in Sources */,
 				64143C3A1C93FC2700796976 /* DigiCardGlobals.swift in Sources */,
 				64143BBA1C9019DA00796976 /* NSObject+String.swift in Sources */,
 				64143B7D1C8FC09A00796976 /* ViewController.swift in Sources */,
@@ -410,6 +416,7 @@
 				64143C3B1C93FC2700796976 /* DigiCardGlobals.swift in Sources */,
 				64143C431C93FCD300796976 /* ImageCardTableCell.swift in Sources */,
 				64143BBB1C9019DA00796976 /* NSObject+String.swift in Sources */,
+				69EE8D5E1CA4466000148FCB /* TestMarginTableCell.swift in Sources */,
 				64143B901C8FC09B00796976 /* TestSwiftUITests.swift in Sources */,
 				64143BAB1C8FCCA500796976 /* Card.swift in Sources */,
 				64143C471C93FDE200796976 /* CameraView.swift in Sources */,
@@ -434,6 +441,7 @@
 				64143C3C1C93FC2700796976 /* DigiCardGlobals.swift in Sources */,
 				64143C441C93FCD300796976 /* ImageCardTableCell.swift in Sources */,
 				64143BBC1C9019DA00796976 /* NSObject+String.swift in Sources */,
+				69EE8D5F1CA4466000148FCB /* TestMarginTableCell.swift in Sources */,
 				64143B9B1C8FC09B00796976 /* TestSwiftUIUITests.swift in Sources */,
 				64143BAC1C8FCCA500796976 /* Card.swift in Sources */,
 				64143C481C93FDE200796976 /* CameraView.swift in Sources */,

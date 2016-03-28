@@ -55,6 +55,8 @@ class TextCardTableCell: UITableViewCell {
         contentLabel.font = UIFont(name: contentFontName, size: contentFontSize)
         contentLabel.textColor = UIColor.whiteColor()
         self.contentView.addSubview(contentLabel);
+        
+        self.alignmentRectInsets()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,7 +68,7 @@ class TextCardTableCell: UITableViewCell {
         super.layoutSubviews()
         
         self.contentView.backgroundColor = UIColor.blueColor()
-        self.contentView.alpha = 0.9
+        self.contentView.alpha = 1.0
         captionLabel.text = "待办记事"
         contentLabel.text = "通知相关企业，27日10时联系赵晨晨，56878542"
         
